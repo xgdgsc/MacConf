@@ -2,6 +2,7 @@
 # Setting PATH for Python 2.7
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+PATH="/Library/Frameworks/Python.framework/Versions/3.3/bin:$PATH"
 export PATH
 
 ##
@@ -9,7 +10,7 @@ export PATH
 ##
 
 # MacPorts Installer addition on 2013-07-18_at_19:15:48: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/Users/gsc/Apps/libsvm-3.17/:/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/Users/gsc/Apps/libsvm-3.17/tools:/Users/gsc/Apps/libsvm-3.17/:/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
 alias ls='ls -l -G'
