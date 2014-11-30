@@ -1,3 +1,11 @@
+(require 'package) 
+(package-initialize)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+       ("marmalade" . "http://marmalade-repo.org/packages/")
+       ("melpa" . "http://melpa.milkbox.net/packages/")))
+(require 'session)
+(add-hook 'after-init-hook 'session-initialize)
+(desktop-save-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -5,12 +13,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (solarized-light)))
- '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
  '(eclim-eclipse-dirs (quote ("/usr/share/eclipse")))
  '(eclim-executable "/usr/share/eclipse/eclim")
  '(font-use-system-font t)
  '(semantic-c-dependency-system-include-path (quote ("/usr/include" "/usr/include/c++/4.7.2/" "/usr/lib/gcc/x86_64-unknown-linux-gnu/4.7.2/include/")))
-;;'(session-use-package t nil (session))
+ '(session-use-package t nil (session))
  '(show-paren-mode t)
  '(wg-query-for-save-on-emacs-exit t))
 (custom-set-faces
@@ -18,21 +26,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "WenQuanYi Micro Hei Mono" :foundry "unknown" :slant normal :weight normal :height 128 :width normal))))
- '(wg-current-workgroup-face ((t (:foreground "black")))))
+ '(wg-current-workgroup-face ((t (:foreground "black"))) t))
 (put 'upcase-region 'disabled nil)
-(add-to-list 'load-path "/usr/share/auto-complete/")
 
 
 
-(require 'package) 
-
-(package-initialize)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-       ("marmalade" . "http://marmalade-repo.org/packages/")
-       ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 
+
+(require 'auto-complete)
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "/usr/share/auto-complete/ac-dict")
 (ac-config-default)
@@ -48,8 +50,8 @@
 
 
 
-(autoload 'python-mode "python-mode.el" "Python mode." t)
-(setq auto-mode-alist (append '(("/*.\.py$" . python-mode)) auto-mode-alist))
+;;(autoload 'python-mode "python-mode.el" "Python mode." t)
+;;(setq auto-mode-alist (append '(("/*.\.py$" . python-mode)) auto-mode-alist))
 
 					;(add-to-list 'load-path "/home/gsc/.emacs.d/elpa/yasnippet-0.8.0/")
 					;(require 'yasnippet)
@@ -60,9 +62,7 @@
 (global-unset-key (kbd "C-SPC"))  
 (global-set-key (kbd "S-SPC") 'set-mark-command)  
 
-(require 'session)
-(add-hook 'after-init-hook 'session-initialize)
-(desktop-save-mode 1)
+
 
 (show-paren-mode 1)
 (setq show-paren-delay 0)
@@ -299,17 +299,18 @@ Emacs buffers are those whose name starts with *."
 ;;             (add-to-list 'ac-sources 'ac-source-emacs-eclim-c-dot)))
 
 ;; add hook flyspell to latex mode
-(add-hook 'LaTeX-mode-hook '(flyspell-mode t))
+;;(add-hook 'LaTeX-mode-hook '(flyspell-mode t))
 
 ;;(load "auctex.el" nil t t)
 ;;(load "preview-latex.el" nil t t)
 (require 'auctex-autoloads)
+;;(require 'latex)
 (require 'preview)
 
 (require 'color-theme)
-(require 'color-theme-solarized)
+;; (require 'color-theme-solarized)
 
-(color-theme-solarized-light)
+;;(color-theme-solarized-light)
 
 ;; (add-to-list 'load-path "/home/gsc/.emacs.d/elpa/workgroups-20110724.1825/")
 ;; (require 'workgroups)
@@ -342,23 +343,17 @@ Emacs buffers are those whose name starts with *."
 (delete-selection-mode 1)
 (setq pkgbuild-update-md5sums-on-save nil)
 
+(require 'php-mode)
 
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
 
-(require 'ac-math)
+(autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
+(autoload 'flyspell-delay-command "flyspell" "Delay on command." t)
+(autoload 'tex-mode-flyspell-verify "flyspell" "" t)
+(add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 
-(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
+(elpy-enable)
 
-(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
-  (setq ac-sources
-     (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
-               ac-sources)))
-
-(add-hook 'latex-mode-hook 'ac-latex-mode-setup)
-
-(ac-flyspell-workaround)
-
-
-(add-to-list 'auto-mode-alist '("\\.\\([pP][Llm]\\|al\\)\\'" . cperl-mode))
-(add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
-(add-to-list 'interpreter-mode-alist '("perl5" . cperl-mode))
-(add-to-list 'interpreter-mode-alist '("miniperl" . cperl-mode))
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
