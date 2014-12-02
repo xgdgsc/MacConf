@@ -13,11 +13,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (solarized-light)))
- '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
+ '(custom-safe-themes
+   (quote
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
  '(eclim-eclipse-dirs (quote ("/usr/share/eclipse")))
  '(eclim-executable "/usr/share/eclipse/eclim")
  '(font-use-system-font t)
- '(semantic-c-dependency-system-include-path (quote ("/usr/include" "/usr/include/c++/4.7.2/" "/usr/lib/gcc/x86_64-unknown-linux-gnu/4.7.2/include/")))
+ '(semantic-c-dependency-system-include-path
+   (quote
+    ("/usr/include" "/usr/include/c++/4.7.2/" "/usr/lib/gcc/x86_64-unknown-linux-gnu/4.7.2/include/")))
  '(session-use-package t nil (session))
  '(show-paren-mode t)
  '(wg-query-for-save-on-emacs-exit t))
@@ -303,9 +307,11 @@ Emacs buffers are those whose name starts with *."
 
 ;;(load "auctex.el" nil t t)
 ;;(load "preview-latex.el" nil t t)
-(require 'auctex-autoloads)
-;;(require 'latex)
-(require 'preview)
+;;(require 'auctex-loads)
+(require 'latex)
+;;(require 'preview)
+;;(require 'company-auctex)
+;;(company-auctex-init)
 
 (require 'color-theme)
 ;; (require 'color-theme-solarized)
@@ -357,3 +363,5 @@ Emacs buffers are those whose name starts with *."
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+(require 'vlf-integrate)
+(require 'auto-complete-auctex)
