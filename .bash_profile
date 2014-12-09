@@ -36,6 +36,5 @@ export PATH
 PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
 export PATH
 alias fixrs="launchctl setenv PATH /usr/texbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
-export HOMEBREW_GITHUB_API_TOKEN=8d1969e7008f3c863f03effbad820787244b7cfc
-alias lyx="/Applications/LyX.app/Contents/MacOS/lyx"
 alias gproxy="export http_proxy='127.0.0.1:8089'"
+alias md5sum='md5'
