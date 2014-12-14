@@ -38,3 +38,4 @@ export PATH
 alias fixrs="launchctl setenv PATH /usr/texbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 alias gproxy="export http_proxy='127.0.0.1:8089'"
 alias md5sum='md5'
+alias cdconda='cd /Users/gsc/anaconda3/bin'
